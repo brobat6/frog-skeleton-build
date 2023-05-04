@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <canvas id="c"></canvas>
+        <div class="menu">
+            <!-- <h2>Commands:</h2> -->
+            <h3>Nagigation Controls:</h3>
+            Left Mouse: Rotate <br>
+            Middle Mouse: Zoom <br>
+            Shift + Left Mouse: Pan <br>
+            <h3>Basic animations:</h3>
+            W : Move front legs forward <br>
+            S : Move back legs backward <br>
+            A : Tilt head left <br>
+            D : Tild head right <br>
+            Arrow Keys : Translate frog <br>
+            Shift + Arrow Keys : Rotate frog <br>
+            <h3>Bonus animations:</h3>
+            X : Swim <br>
+            J : Jump <br>
+            <h3>Extra features:</h3>
+            L : Mouth open/close <br>
+            G : Toggle ground visibility <br>
+            Shift + W : Reverse movement of front legs <br>
+            <b>R : Reset all commands</b> <br>
+        </div>
+        <!-- Color Wave Vertex Shader -->
+        <script id="vertexShader" type="x-shader/x-vertex">
+            varying vec3 vUv;
+            void main() {
+                vUv = position;
+                vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+                gl_Position = projectionMatrix * modelViewPosition;
+            }
+        </script>
+        <!-- Color Wave Fragment Shader -->
+        <script id="fragmentShader" type="x-shader/x-fragment">
+            uniform vec3 colorA; 
+            uniform vec3 colorB;
+            varying vec3 vUv;
+            uniform float u_time;
+
+            void main() {
+                float pct = abs(sin(u_time));
+                gl_FragColor = vec4(mix(colorA, colorB, vUv.z + pct), 1.0);
+            }
+        </script>
+        <script type="module" src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "frog-skeleton-animation",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://brobat6.github.io/frog-skeleton-animation/",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html  --no-source-maps --public-url ./",
+    "deploy": "rm -rf dist/ && npm run build && gh-pages -d dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gh-pages": "^5.0.0",
+    "three": "^0.152.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
